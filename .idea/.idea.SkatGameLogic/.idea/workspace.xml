@@ -17,15 +17,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4def7510-426d-4a90-ae2c-c1626fc62652" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SkatGameLogic/Dataoriented/CardDataOriented.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Card.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SkatGameLogic/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Skat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Skat.cs" afterDir="false" />
     </list>
-    <list id="dfa8d582-f968-40f1-9e74-af5767f7693f" name="Nico" comment="" />
+    <list id="dfa8d582-f968-40f1-9e74-af5767f7693f" name="Nico" comment="">
+      <change afterPath="$PROJECT_DIR$/SkatGameLogic/Dataoriented/CardDataOriented.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,13 +36,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Player.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D67CFCDB-BB76-4ACF-8B6A-F250A5089BB1/26/Select.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Card.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19B3447F-EED7-48F4-B362-071ED33E9131/ef/612671a6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Card.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -54,10 +50,10 @@
         <option value="$PROJECT_DIR$/SkatGameLogic/Dataoriented.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Program.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Daraoriented/CardDataOriented.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Skat.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Card.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Player.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Card.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Skat.cs" />
       </list>
     </option>
   </component>
@@ -81,7 +77,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -115,7 +111,8 @@
       <updated>1605522490778</updated>
       <workItem from="1605522496240" duration="9312000" />
       <workItem from="1605534155601" duration="112000" />
-      <workItem from="1605534305087" duration="10651000" />
+      <workItem from="1605534305087" duration="14365000" />
+      <workItem from="1605548731027" duration="1175000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic card system">
       <created>1605527800121</created>
@@ -152,7 +149,35 @@
       <option name="project" value="LOCAL" />
       <updated>1605541492463</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix card sorting">
+      <created>1605545108039</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605545108039</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add ConsoleLineUtils.cs">
+      <created>1605545118009</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605545118009</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add Skat swapping">
+      <created>1605545133133</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605545133133</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add Skat swapping">
+      <created>1605545168495</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605545168495</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,33 +202,36 @@
     <MESSAGE value="Add basic card system" />
     <MESSAGE value="Improve Card.ToString()" />
     <MESSAGE value="Implement basic bidding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement basic bidding" />
+    <MESSAGE value="Fix card sorting" />
+    <MESSAGE value="Add ConsoleLineUtils.cs" />
+    <MESSAGE value="Add Skat swapping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Skat swapping" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="577" y="197" width="800" height="719" key="#Plugins" timestamp="1605534226707">
+    <state x="577" y="123" width="800" height="793" key="#Plugins" timestamp="1605549755431">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state x="577" y="197" width="800" height="719" key="#Plugins/45.27.1875.1053@45.27.1875.1053" timestamp="1605534226707" />
+    <state x="577" y="123" width="800" height="793" key="#Plugins/45.27.1875.1053@45.27.1875.1053" timestamp="1605549755431" />
     <state width="465" height="484" key="DebuggerActiveHint" timestamp="1605527012003">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state width="465" height="484" key="DebuggerActiveHint/45.27.1875.1053@45.27.1875.1053" timestamp="1605527012002" />
-    <state width="1825" height="331" key="GridCell.Tab.0.bottom" timestamp="1605544838646">
+    <state width="1825" height="318" key="GridCell.Tab.0.bottom" timestamp="1605549904999">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="331" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605544838646" />
-    <state width="1825" height="331" key="GridCell.Tab.0.center" timestamp="1605544838646">
+    <state width="1825" height="318" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904999" />
+    <state width="1825" height="318" key="GridCell.Tab.0.center" timestamp="1605549904998">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="331" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605544838646" />
-    <state width="1825" height="331" key="GridCell.Tab.0.left" timestamp="1605544838645">
+    <state width="1825" height="318" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904998" />
+    <state width="1825" height="318" key="GridCell.Tab.0.left" timestamp="1605549904997">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="331" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605544838645" />
-    <state width="1825" height="331" key="GridCell.Tab.0.right" timestamp="1605544838646">
+    <state width="1825" height="318" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904997" />
+    <state width="1825" height="318" key="GridCell.Tab.0.right" timestamp="1605549904999">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="331" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605544838646" />
+    <state width="1825" height="318" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904999" />
     <state width="1825" height="172" key="GridCell.Tab.1.bottom" timestamp="1605541375784">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
@@ -268,14 +296,14 @@
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state width="1825" height="172" key="GridCell.Tab.4.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605541375787" />
-    <state x="801" y="174" width="637" height="661" key="RiderGenerateDialog" timestamp="1605540430072">
+    <state x="801" y="100" width="637" height="735" key="RiderGenerateDialog" timestamp="1605549673348">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state x="801" y="174" width="637" height="661" key="RiderGenerateDialog/45.27.1875.1053@45.27.1875.1053" timestamp="1605540430072" />
-    <state x="486" y="114" width="992" height="811" key="SettingsEditor" timestamp="1605536775071">
+    <state x="801" y="100" width="637" height="735" key="RiderGenerateDialog/45.27.1875.1053@45.27.1875.1053" timestamp="1605549673348" />
+    <state x="486" y="40" width="992" height="885" key="SettingsEditor" timestamp="1605548501035">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state x="486" y="114" width="992" height="811" key="SettingsEditor/45.27.1875.1053@45.27.1875.1053" timestamp="1605536775071" />
+    <state x="486" y="40" width="992" height="885" key="SettingsEditor/45.27.1875.1053@45.27.1875.1053" timestamp="1605548501035" />
     <state x="815" y="370" width="324" height="300" key="VCS.EditChangelistDialog" timestamp="1605541252393">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
@@ -292,9 +320,9 @@
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state x="834" y="377" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/45.27.1875.1053@45.27.1875.1053" timestamp="1605541580007" />
-    <state x="645" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1605542655731">
+    <state x="645" y="261" width="672" height="678" key="search.everywhere.popup" timestamp="1605549902658">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state x="645" y="261" width="672" height="678" key="search.everywhere.popup/45.27.1875.1053@45.27.1875.1053" timestamp="1605542655731" />
+    <state x="645" y="261" width="672" height="678" key="search.everywhere.popup/45.27.1875.1053@45.27.1875.1053" timestamp="1605549902658" />
   </component>
 </project>

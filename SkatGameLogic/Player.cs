@@ -11,25 +11,34 @@ namespace SkatGameLogic
         public CardCollection DiscardPile;
         public int GameScore;
 
-        public abstract int Bid(int currentBid);
+        public Player(string name) => Name = name;
+
+        public abstract int? Bid(int currentBid);
         public abstract bool Listen(int currentBid);
         public abstract bool SwapWithSkat(CardCollection skat);
-        public abstract Rules SelectRules();
+        public abstract Rules SelectRules(bool lookedAtSkat);
         public abstract Card PlayCard(Game game);
     }
 
     public class HumanPlayer : Player
     {
-        public HumanPlayer(string name) => Name = name;
+        public HumanPlayer(string name) : base(name)
+        {
+        }
 
-        public override int Bid(int currentBid)
+        public override int? Bid(int currentBid)
         {
             Console.WriteLine(Name + ": " + Hand);
             Console.WriteLine("Current Bid: " + currentBid);
-            return ConsoleLineUtils.GetNullableInt(
-                "Please enter a number that is higher than the current bid (or enter nothing to pass)",
-                currentBid
-            ) ?? -1;
+            Console.WriteLine("Please enter a number that is higher than the current bid (or enter nothing to pass)");
+            while (true)
+            {
+                var bid = ConsoleLineUtils.GetInt();
+                if (bid != null && bid <= currentBid)
+                    Console.WriteLine("Bid has to be higher than the current bid (enter nothing to pass)");
+                else
+                    return bid;
+            }
         }
 
         public override bool Listen(int currentBid)
@@ -46,12 +55,9 @@ namespace SkatGameLogic
 
             void printStatus()
             {
-                Console.WriteLine("---");
                 Console.WriteLine("Skat:\t" + skat);
-                Console.WriteLine("---");
                 Console.WriteLine(String.Join('\t', Enumerable.Range(0, Hand.Cards.Count)));
                 Console.WriteLine(Hand);
-                Console.WriteLine("---");
             }
 
             var swapNthSkatCard = 0;
@@ -60,10 +66,15 @@ namespace SkatGameLogic
             printStatus();
             while (true)
             {
-                var i = ConsoleLineUtils.GetNullableInt(
-                    "Enter index of card to swap (enter nothing to go to next skat card): ",
-                    0, Hand.Cards.Count - 1
-                );
+                int? i;
+                while (true)
+                {
+                    Console.WriteLine("Enter an index of number to swap (enter nothing to go to next skat card)");
+                    i = ConsoleLineUtils.GetInt();
+                    if (i == null || i >= 0 && i < Hand.Cards.Count)
+                        break;
+                    Console.WriteLine("Number not in range");
+                }
 
                 if (i != null)
                 {
@@ -86,9 +97,58 @@ namespace SkatGameLogic
             }
         }
 
-        public override Rules SelectRules()
+        public override Rules SelectRules(bool lookedAtSkat)
         {
-            return new Rules();
+            var gameModeIndex = ConsoleLineUtils.SelectFromList(
+                "Select a game mode",
+                Enum.GetNames(typeof(GameMode)).ToList()
+            );
+            var gameMode = (GameMode) gameModeIndex;
+
+            var trumpSuit = CardSuit.Clubs;
+            if (gameMode == GameMode.Color)
+            {
+                var colorIndex = ConsoleLineUtils.SelectFromList(
+                    "Select a trump suit",
+                    Enum.GetNames(typeof(CardSuit)).ToList()
+                );
+                trumpSuit = (CardSuit) colorIndex;
+            }
+
+            RuleModifier modifier;
+            if (lookedAtSkat)
+                modifier = RuleModifier.Normal;
+            else
+            {
+                List<RuleModifier> validModifiers;
+                if (gameMode == GameMode.Null)
+                    validModifiers = new List<RuleModifier>()
+                    {
+                        RuleModifier.Hand,
+                        RuleModifier.HandOpen
+                    };
+                else
+                    validModifiers = new List<RuleModifier>()
+                    {
+                        RuleModifier.Hand,
+                        RuleModifier.SchneiderAnnounced,
+                        RuleModifier.SchwarzAnnounced,
+                        RuleModifier.Open
+                    };
+
+                var modifierIndex = ConsoleLineUtils.SelectFromList(
+                    "Select a game level",
+                    validModifiers
+                );
+                modifier = validModifiers[modifierIndex];
+            }
+
+            return new Rules()
+            {
+                GameMode = gameMode,
+                Modifier = modifier,
+                TrumpSuit = trumpSuit
+            };
         }
 
         public override Card PlayCard(Game game)
@@ -101,26 +161,31 @@ namespace SkatGameLogic
                 var success = int.TryParse(Console.ReadLine(), out int i);
                 if (success && (i >= 0 || i < Hand.Cards.Count))
                     return Hand.Cards[i];
-                else
-                    Console.WriteLine("Invalid number, please try again");
+                Console.WriteLine("Invalid number, please try again");
             }
         }
     }
 
     public class AiPlayer : Player
     {
+        public AiPlayer(string name) : base(name)
+        {
+        }
+
         // Very basic default behavior
-        public override int Bid(int currentBid) => -1;
+
+        public override int? Bid(int currentBid) => null;
+
         public override bool Listen(int currentBid) => false;
 
         public override bool SwapWithSkat(CardCollection skat) => false;
 
-        public override Rules SelectRules()
+        public override Rules SelectRules(bool b)
         {
-            return new Rules()
+            return new Rules
             {
                 GameMode = GameMode.Grand,
-                Modifiers = RuleModifiers.Normal
+                Modifier = RuleModifier.Normal
             };
         }
 

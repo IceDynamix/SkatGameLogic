@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace SkatGameLogic
@@ -9,11 +10,11 @@ namespace SkatGameLogic
 
         public Skat()
         {
-            Players = new List<Player>()
+            Players = new List<Player>
             {
                 new HumanPlayer("Forehand"),
-                new HumanPlayer("Middlehand"),
-                new HumanPlayer("Rearhand")
+                new AiPlayer("Middlehand"),
+                new AiPlayer("Rearhand")
             };
 
             Games = new List<Game>();
@@ -35,8 +36,11 @@ namespace SkatGameLogic
         {
             Players = players;
             DealCards();
-            Bidding();
-            Declarer.SwapWithSkat(Skat);
+            Declarer = Bidding();
+            var lookedAtSkat = Declarer.SwapWithSkat(Skat);
+            Rules = Declarer.SelectRules(lookedAtSkat);
+            Declarer.Hand.StandardSort(Rules.TrumpSuit);
+            Console.WriteLine($"Playing with rules {Rules}");
         }
 
         private void DealCards()
@@ -52,10 +56,10 @@ namespace SkatGameLogic
             Skat = skatDeck;
         }
 
-        private void Bidding()
+        private Player Bidding()
         {
             var firstBidWinner = PlayerBidsOtherPlayer(Players[1], Players[0]);
-            Declarer = PlayerBidsOtherPlayer(Players[2], firstBidWinner);
+            return PlayerBidsOtherPlayer(Players[2], firstBidWinner);
         }
 
         private Player PlayerBidsOtherPlayer(Player bidder, Player listener)
@@ -63,12 +67,18 @@ namespace SkatGameLogic
             while (true)
             {
                 var bid = bidder.Bid(BidValue);
-                if (bid == -1)
+                if (bid == null)
+                {
+                    Console.WriteLine(bidder.Name + " passes");
                     return listener;
-                BidValue = bid;
+                }
+                BidValue = (int) bid;
                 var callsBid = listener.Listen(BidValue);
                 if (!callsBid)
+                {
+                    Console.WriteLine(listener.Name + " passes");
                     return bidder;
+                }
             }
         }
 
@@ -81,7 +91,9 @@ namespace SkatGameLogic
     {
         public GameMode GameMode;
         public CardSuit TrumpSuit; // Only needed if color game
-        public RuleModifiers Modifiers;
+        public RuleModifier Modifier;
+
+        public override string ToString() => $"Rules: {GameMode}, {TrumpSuit}, {Modifier}";
     }
 
     public struct Round
@@ -96,14 +108,14 @@ namespace SkatGameLogic
         Null
     }
 
-    public enum RuleModifiers
+    public enum RuleModifier
     {
         Normal,
         Hand,
         Schneider,
-        SchneiderAngesagt, // implies Hand
+        SchneiderAnnounced, // implies Hand
         Schwarz,
-        SchwarzAngesagt, // implies Hand
+        SchwarzAnnounced, // implies Hand
         Open, // implies Hand
         HandOpen // implies Null gamemode
     }

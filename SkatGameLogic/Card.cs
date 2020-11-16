@@ -73,14 +73,14 @@ namespace SkatGameLogic
 
         public override string ToString()
         {
-            var suitUnicode = new Dictionary<CardSuit, char>()
+            var suitUnicode = new Dictionary<CardSuit, char>
             {
                 {CardSuit.Clubs, '♣'},
                 {CardSuit.Spades, '♠'},
                 {CardSuit.Hearts, '♥'},
                 {CardSuit.Diamonds, '♦'}
             };
-            var numberUnicode = new Dictionary<CardNumber, String>()
+            var numberUnicode = new Dictionary<CardNumber, String>
             {
                 {CardNumber.Jack, "J"},
                 {CardNumber.Ace, "A"},

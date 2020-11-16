@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace SkatGameLogic
 {
@@ -10,26 +11,8 @@ namespace SkatGameLogic
             return Console.ReadLine() != "n";
         }
 
-        public static int? GetNullableInt(string prompt = default, int? min = null, int? max = null)
+        public static int? GetInt()
         {
-            string promptString;
-            if (prompt == default)
-            {
-                promptString = "Enter a number";
-                if (min != null || max != null)
-                {
-                    var minString = min == null ? "" : min.ToString();
-                    var maxString = max == null ? "" : max.ToString();
-                    promptString += $" [{minString}-{maxString}]";
-                }
-
-                promptString += ": ";
-            }
-            else
-                promptString = prompt;
-
-            Console.Write(promptString);
-
             while (true)
             {
                 var input = Console.ReadLine();
@@ -39,11 +22,26 @@ namespace SkatGameLogic
                 var success = int.TryParse(input, out int n);
                 if (!success)
                     Console.WriteLine("Could not read number, please try again");
-                else if ((min != default && n < min) || (max != default && n > max))
-                    Console.WriteLine("Number outside range, please try again");
                 else
                     return n;
             }
+        }
+        
+        public static int SelectFromList<T>(string prompt, List<T> items)
+        {
+            Console.WriteLine("---");
+            Console.WriteLine(prompt);
+            for (int i = 0; i < items.Count; i++)
+                Console.WriteLine($"[{i}]: " + items[i]);
+            while (true)
+            {
+                var index = GetInt();
+                if (index == null || index < 0 || index >= items.Count)
+                    Console.WriteLine("Number not in range, please try again");
+                else 
+                    return (int)index;
+            }
+
         }
     }
 }
