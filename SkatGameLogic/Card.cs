@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace SkatGameLogic.Card
+namespace SkatGameLogic
 {
     public class CardCollection
     {
@@ -59,14 +59,36 @@ namespace SkatGameLogic.Card
             Cards.AddRange(shuffledCards);
         }
 
-        public override string ToString() => String.Join('\n', Cards.Select(c => c.ToString()));
+        public override string ToString() => String.Join(' ', Cards.Select(c => c.ToString()));
     }
 
     public class Card
     {
         public CardSuit CardSuit { get; set; }
         public CardNumber CardNumber { get; set; }
-        public override string ToString() => $"{CardNumber} of {CardSuit}";
+
+        public override string ToString()
+        {
+            var suitUnicode = new Dictionary<CardSuit, char>()
+            {
+                {CardSuit.Clubs, '♣'},
+                {CardSuit.Spades, '♠'},
+                {CardSuit.Hearts, '♥'},
+                {CardSuit.Diamonds, '♦'}
+            };
+            var numberUnicode = new Dictionary<CardNumber, String>()
+            {
+                {CardNumber.Jack, "J"},
+                {CardNumber.Ace, "A"},
+                {CardNumber.Ten, "10"},
+                {CardNumber.King, "K"},
+                {CardNumber.Queen, "Q"},
+                {CardNumber.Nine, "9"},
+                {CardNumber.Eight, "8"},
+                {CardNumber.Seven, "7"},
+            };
+            return $"{suitUnicode[CardSuit]}{numberUnicode[CardNumber]}";
+        }
     }
 
     public enum CardSuit
