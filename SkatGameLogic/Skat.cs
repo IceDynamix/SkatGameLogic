@@ -93,7 +93,7 @@ namespace SkatGameLogic
         public CardSuit TrumpSuit; // Only needed if color game
         public RuleModifier Modifier;
 
-        public override string ToString() => $"Rules: {GameMode}, {TrumpSuit}, {Modifier}";
+        public override string ToString() => $"{GameMode}, {TrumpSuit}, {Modifier}";
     }
 
     public struct Round

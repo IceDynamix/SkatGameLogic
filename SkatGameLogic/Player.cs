@@ -28,7 +28,7 @@ namespace SkatGameLogic
 
         public override int? Bid(int currentBid)
         {
-            Console.WriteLine(Name + ": " + Hand);
+            Hand.PrintColored();
             Console.WriteLine("Current Bid: " + currentBid);
             Console.WriteLine("Please enter a number that is higher than the current bid (or enter nothing to pass)");
             while (true)
@@ -43,26 +43,28 @@ namespace SkatGameLogic
 
         public override bool Listen(int currentBid)
         {
+            Hand.PrintColored();
             Console.WriteLine("Current Bid: " + currentBid);
             return ConsoleLineUtils.GetBool("Go with the current bid?");
         }
 
         public override bool SwapWithSkat(CardCollection skat)
         {
+            Hand.PrintColored();
             var look = ConsoleLineUtils.GetBool("Look at skat?");
             if (!look)
                 return false;
 
             void printStatus()
             {
-                Console.WriteLine("Skat:\t" + skat);
+                Console.Write("Skat:\t");
+                skat.PrintColored();
                 Console.WriteLine(String.Join('\t', Enumerable.Range(0, Hand.Cards.Count)));
-                Console.WriteLine(Hand);
+                Hand.PrintColored();
             }
 
             var swapNthSkatCard = 0;
             Console.WriteLine("------------------------------------");
-            Console.WriteLine("Swap skat card " + swapNthSkatCard);
             printStatus();
             while (true)
             {
@@ -90,9 +92,6 @@ namespace SkatGameLogic
                         Hand.StandardSort();
                         return true;
                     }
-
-                    Console.WriteLine("------------------------------------");
-                    Console.WriteLine("Swap skat card " + swapNthSkatCard);
                 }
             }
         }

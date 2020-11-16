@@ -64,6 +64,16 @@ namespace SkatGameLogic
         }
 
         public override string ToString() => String.Join('\t', Cards.Select(c => c.ToString()));
+
+        public void PrintColored()
+        {
+            foreach (var card in Cards)
+            {
+                card.PrintColored();
+                Console.Write("\t");
+            }
+            Console.Write("\n");
+        }
     }
 
     public struct Card
@@ -71,6 +81,21 @@ namespace SkatGameLogic
         public CardSuit CardSuit { get; set; }
         public CardNumber CardNumber { get; set; }
 
+        public void PrintColored()
+        {
+            var colors = new Dictionary<CardSuit, ConsoleColor>
+            {
+                {CardSuit.Clubs, ConsoleColor.White},
+                {CardSuit.Spades, ConsoleColor.Green},
+                {CardSuit.Hearts, ConsoleColor.Red},
+                {CardSuit.Diamonds, ConsoleColor.Yellow}
+            };
+
+            var previous = Console.ForegroundColor;
+            Console.ForegroundColor = colors[CardSuit];
+            Console.Write(this);
+            Console.ForegroundColor = previous;
+        }
         public override string ToString()
         {
             var suitUnicode = new Dictionary<CardSuit, char>

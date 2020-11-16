@@ -17,16 +17,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4def7510-426d-4a90-ae2c-c1626fc62652" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SkatGameLogic/Data/CardDataOriented.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkatGameLogic/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Card.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Card.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SkatGameLogic/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SkatGameLogic/Skat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SkatGameLogic/Skat.cs" afterDir="false" />
     </list>
-    <list id="dfa8d582-f968-40f1-9e74-af5767f7693f" name="Nico" comment="">
-      <change afterPath="$PROJECT_DIR$/SkatGameLogic/Dataoriented/CardDataOriented.cs" afterDir="false" />
-    </list>
+    <list id="dfa8d582-f968-40f1-9e74-af5767f7693f" name="Nico" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +34,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D67CFCDB-BB76-4ACF-8B6A-F250A5089BB1/26/Select.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Skat.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Card.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Skat.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/ConsoleLineUtils.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Player.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19B3447F-EED7-48F4-B362-071ED33E9131/ef/612671a6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/ice/Documents/Repositories/SkatGameLogic/SkatGameLogic/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -50,10 +53,10 @@
         <option value="$PROJECT_DIR$/SkatGameLogic/Dataoriented.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Program.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Daraoriented/CardDataOriented.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Card.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Player.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Card.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Skat.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Player.cs" />
       </list>
     </option>
   </component>
@@ -113,6 +116,7 @@
       <workItem from="1605534155601" duration="112000" />
       <workItem from="1605534305087" duration="14365000" />
       <workItem from="1605548731027" duration="1175000" />
+      <workItem from="1605550006788" duration="1574000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic card system">
       <created>1605527800121</created>
@@ -177,7 +181,21 @@
       <option name="project" value="LOCAL" />
       <updated>1605545168495</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Implement rule selection">
+      <created>1605550106056</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605550106056</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implement rule selection">
+      <created>1605550245477</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605550245477</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +223,8 @@
     <MESSAGE value="Fix card sorting" />
     <MESSAGE value="Add ConsoleLineUtils.cs" />
     <MESSAGE value="Add Skat swapping" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Skat swapping" />
+    <MESSAGE value="Implement rule selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement rule selection" />
   </component>
   <component name="WindowStateProjectService">
     <state x="577" y="123" width="800" height="793" key="#Plugins" timestamp="1605549755431">
@@ -216,22 +235,22 @@
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state width="465" height="484" key="DebuggerActiveHint/45.27.1875.1053@45.27.1875.1053" timestamp="1605527012002" />
-    <state width="1825" height="318" key="GridCell.Tab.0.bottom" timestamp="1605549904999">
+    <state width="1825" height="184" key="GridCell.Tab.0.bottom" timestamp="1605551331120">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="318" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904999" />
-    <state width="1825" height="318" key="GridCell.Tab.0.center" timestamp="1605549904998">
+    <state width="1825" height="184" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605551331120" />
+    <state width="1825" height="184" key="GridCell.Tab.0.center" timestamp="1605551331120">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="318" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904998" />
-    <state width="1825" height="318" key="GridCell.Tab.0.left" timestamp="1605549904997">
+    <state width="1825" height="184" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605551331120" />
+    <state width="1825" height="184" key="GridCell.Tab.0.left" timestamp="1605551331119">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="318" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904997" />
-    <state width="1825" height="318" key="GridCell.Tab.0.right" timestamp="1605549904999">
+    <state width="1825" height="184" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605551331119" />
+    <state width="1825" height="184" key="GridCell.Tab.0.right" timestamp="1605551331120">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="318" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605549904999" />
+    <state width="1825" height="184" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605551331120" />
     <state width="1825" height="172" key="GridCell.Tab.1.bottom" timestamp="1605541375784">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
@@ -312,10 +331,10 @@
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state x="984" y="31" width="931" height="1045" key="VCS.FileHistoryDialog/45.27.1875.1053@45.27.1875.1053" timestamp="1605534122777" />
-    <state x="663" y="169" width="638" height="768" key="find.popup" timestamp="1605529688505">
+    <state x="663" y="169" width="638" height="768" key="find.popup" timestamp="1605550636952">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state x="663" y="169" width="638" height="768" key="find.popup/45.27.1875.1053@45.27.1875.1053" timestamp="1605529688505" />
+    <state x="663" y="169" width="638" height="768" key="find.popup/45.27.1875.1053@45.27.1875.1053" timestamp="1605550636952" />
     <state x="834" y="377" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1605541580007">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
