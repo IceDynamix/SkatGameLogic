@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace SkatGameLogic
@@ -32,12 +31,17 @@ namespace SkatGameLogic
 
             // Everything depends on the List.Distinct at the end so
             // we don't have to worry about adding duplicate cards
-            var trumpSuitCards = Cards.Where(
-                c => c.CardSuit == trumpSuit).ToList();
+            var trumpSuitCards = Cards.Where(c => c.CardSuit == trumpSuit)
+                .OrderBy(c => c.CardNumber)
+                .ToList();
+
             sortedCards.AddRange(trumpSuitCards);
 
             foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
-                sortedCards.AddRange(Cards.Where(c => c.CardSuit == suit));
+                sortedCards.AddRange(
+                    Cards.Where(c => c.CardSuit == suit)
+                        .OrderBy(c => c.CardNumber)
+                );
 
             Cards.Clear();
             Cards.AddRange(sortedCards.Distinct());
@@ -59,7 +63,7 @@ namespace SkatGameLogic
             Cards.AddRange(shuffledCards);
         }
 
-        public override string ToString() => String.Join(' ', Cards.Select(c => c.ToString()));
+        public override string ToString() => String.Join('\t', Cards.Select(c => c.ToString()));
     }
 
     public struct Card
