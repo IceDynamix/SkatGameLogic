@@ -36,7 +36,7 @@ namespace SkatGameLogic
             Players = players;
             DealCards();
             Bidding();
-            Declarer.SwapWithSkat();
+            Declarer.SwapWithSkat(Skat);
         }
 
         private void DealCards()

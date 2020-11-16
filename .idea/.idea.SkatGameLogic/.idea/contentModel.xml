@@ -6,7 +6,8 @@
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="SkatGameLogic" t="IncludeRecursive">
         <e p="Card.cs" t="Include" />
-        <e p="Daraoriented" t="Include">
+        <e p="ConsoleLineUtils.cs" t="Include" />
+        <e p="Dataoriented" t="Include">
           <e p="CardDataOriented.cs" t="Include" />
         </e>
         <e p="Player.cs" t="Include" />
