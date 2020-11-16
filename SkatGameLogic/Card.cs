@@ -62,7 +62,7 @@ namespace SkatGameLogic
         public override string ToString() => String.Join(' ', Cards.Select(c => c.ToString()));
     }
 
-    public class Card
+    public struct Card
     {
         public CardSuit CardSuit { get; set; }
         public CardNumber CardNumber { get; set; }
