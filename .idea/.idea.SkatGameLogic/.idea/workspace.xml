@@ -59,10 +59,10 @@
         <option value="$PROJECT_DIR$/SkatGameLogic/Dataoriented.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Program.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Daraoriented/CardDataOriented.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Skat.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/Card.cs" />
-        <option value="$PROJECT_DIR$/SkatGameLogic/Player.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Skat.cs" />
         <option value="$PROJECT_DIR$/SkatGameLogic/ConsoleLineUtils.cs" />
+        <option value="$PROJECT_DIR$/SkatGameLogic/Player.cs" />
       </list>
     </option>
   </component>
@@ -123,7 +123,7 @@
       <workItem from="1605534155601" duration="112000" />
       <workItem from="1605534305087" duration="14365000" />
       <workItem from="1605548731027" duration="1175000" />
-      <workItem from="1605550006788" duration="8235000" />
+      <workItem from="1605550006788" duration="10132000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic card system">
       <created>1605527800121</created>
@@ -209,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605559553356</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Rewrite printing">
+      <created>1605605850300</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605605850300</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +246,8 @@
     <MESSAGE value="Add Skat swapping" />
     <MESSAGE value="Implement rule selection" />
     <MESSAGE value="Implement colored output" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement colored output" />
+    <MESSAGE value="Rewrite printing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite printing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="577" y="123" width="800" height="793" key="#Plugins" timestamp="1605549755431">
@@ -250,22 +258,22 @@
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
     <state width="465" height="484" key="DebuggerActiveHint/45.27.1875.1053@45.27.1875.1053" timestamp="1605527012002" />
-    <state width="1825" height="291" key="GridCell.Tab.0.bottom" timestamp="1605605621568">
+    <state width="1825" height="291" key="GridCell.Tab.0.bottom" timestamp="1605606938960">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="291" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605605621568" />
-    <state width="1825" height="291" key="GridCell.Tab.0.center" timestamp="1605605621567">
+    <state width="1825" height="291" key="GridCell.Tab.0.bottom/45.27.1875.1053@45.27.1875.1053" timestamp="1605606938960" />
+    <state width="1825" height="291" key="GridCell.Tab.0.center" timestamp="1605606938959">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="291" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605605621567" />
-    <state width="1825" height="291" key="GridCell.Tab.0.left" timestamp="1605605621567">
+    <state width="1825" height="291" key="GridCell.Tab.0.center/45.27.1875.1053@45.27.1875.1053" timestamp="1605606938959" />
+    <state width="1825" height="291" key="GridCell.Tab.0.left" timestamp="1605606938959">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="291" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605605621567" />
-    <state width="1825" height="291" key="GridCell.Tab.0.right" timestamp="1605605621568">
+    <state width="1825" height="291" key="GridCell.Tab.0.left/45.27.1875.1053@45.27.1875.1053" timestamp="1605606938959" />
+    <state width="1825" height="291" key="GridCell.Tab.0.right" timestamp="1605606938959">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>
-    <state width="1825" height="291" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605605621568" />
+    <state width="1825" height="291" key="GridCell.Tab.0.right/45.27.1875.1053@45.27.1875.1053" timestamp="1605606938959" />
     <state width="1825" height="172" key="GridCell.Tab.1.bottom" timestamp="1605603751594">
       <screen x="45" y="27" width="1875" height="1053" />
     </state>

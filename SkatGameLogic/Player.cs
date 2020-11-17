@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 
 namespace SkatGameLogic
 {
@@ -66,12 +67,12 @@ namespace SkatGameLogic
                     }
                     else
                         skat.Cards[i].PrintColored();
+
                     Console.Write("  ");
                 }
 
                 Console.Write("\n");
-                Console.WriteLine(String.Join('\t', Enumerable.Range(0, Hand.Cards.Count)));
-                Hand.PrintColored();
+                Hand.PrintColored(true);
             }
 
             int? GetInt(string prompt)
@@ -115,29 +116,46 @@ namespace SkatGameLogic
 
         public override Rules SelectRules(bool lookedAtSkat)
         {
-            var gameModeIndex = ConsoleLineUtils.SelectFromList(
+            int SelectFromList<T>(string prompt, List<T> items)
+            {
+                Console.Clear();
+                Hand.PrintColored();
+                Console.WriteLine(prompt);
+                for (int i = 0; i < items.Count; i++)
+                    Console.WriteLine($"[{i}]: " + items[i]);
+                while (true)
+                {
+                    var index = ConsoleLineUtils.GetInt();
+                    if (index == null || index < 0 || index >= items.Count)
+                        Console.WriteLine("Number not in range, please try again");
+                    else
+                        return (int) index;
+                }
+            }
+
+            var rules = new Rules();
+
+            var gameModeIndex = SelectFromList(
                 "Select a game mode",
                 Enum.GetNames(typeof(GameMode)).ToList()
             );
-            var gameMode = (GameMode) gameModeIndex;
+            rules.GameMode = (GameMode) gameModeIndex;
 
-            var trumpSuit = CardSuit.Clubs;
-            if (gameMode == GameMode.Color)
+            if (rules.GameMode == GameMode.Color)
             {
-                var colorIndex = ConsoleLineUtils.SelectFromList(
+                var colorIndex = SelectFromList(
                     "Select a trump suit",
                     Enum.GetNames(typeof(CardSuit)).ToList()
                 );
-                trumpSuit = (CardSuit) colorIndex;
+                rules.TrumpSuit = (CardSuit) colorIndex;
             }
 
-            RuleModifier modifier;
             if (lookedAtSkat)
-                modifier = RuleModifier.Normal;
+                rules.Modifier = RuleModifier.Normal;
             else
             {
                 List<RuleModifier> validModifiers;
-                if (gameMode == GameMode.Null)
+                if (rules.GameMode == GameMode.Null)
                     validModifiers = new List<RuleModifier>()
                     {
                         RuleModifier.Hand,
@@ -152,19 +170,14 @@ namespace SkatGameLogic
                         RuleModifier.Open
                     };
 
-                var modifierIndex = ConsoleLineUtils.SelectFromList(
+                var modifierIndex = SelectFromList(
                     "Select a game level",
                     validModifiers
                 );
-                modifier = validModifiers[modifierIndex];
+                rules.Modifier = validModifiers[modifierIndex];
             }
 
-            return new Rules()
-            {
-                GameMode = gameMode,
-                Modifier = modifier,
-                TrumpSuit = trumpSuit
-            };
+            return rules;
         }
 
         public override Card PlayCard(Game game)

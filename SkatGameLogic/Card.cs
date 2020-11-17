@@ -65,8 +65,10 @@ namespace SkatGameLogic
 
         public override string ToString() => String.Join('\t', Cards.Select(c => c.ToString()));
 
-        public void PrintColored(int spacing = 5)
+        public void PrintColored(bool printIndices = false)
         {
+            if (printIndices)
+                Console.WriteLine(String.Join('\t', Enumerable.Range(0, Cards.Count)));
             foreach (var card in Cards)
             {
                 card.PrintColored();
