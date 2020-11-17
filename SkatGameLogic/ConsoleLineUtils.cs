@@ -29,7 +29,7 @@ namespace SkatGameLogic
         
         public static int SelectFromList<T>(string prompt, List<T> items)
         {
-            Console.WriteLine("---");
+            Console.Clear();
             Console.WriteLine(prompt);
             for (int i = 0; i < items.Count; i++)
                 Console.WriteLine($"[{i}]: " + items[i]);

@@ -50,50 +50,67 @@ namespace SkatGameLogic
 
         public override bool SwapWithSkat(CardCollection skat)
         {
-            Hand.PrintColored();
-            var look = ConsoleLineUtils.GetBool("Look at skat?");
-            if (!look)
-                return false;
-
-            void printStatus()
+            void printStatus(int highlightNthSkatCard)
             {
+                Console.Clear();
+
                 Console.Write("Skat:\t");
-                skat.PrintColored();
+                for (int i = 0; i < skat.Cards.Count; i++)
+                {
+                    if (i == highlightNthSkatCard)
+                    {
+                        var previousFg = Console.ForegroundColor;
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        skat.Cards[i].PrintColored();
+                        Console.BackgroundColor = previousFg;
+                    }
+                    else
+                        skat.Cards[i].PrintColored();
+                    Console.Write("  ");
+                }
+
+                Console.Write("\n");
                 Console.WriteLine(String.Join('\t', Enumerable.Range(0, Hand.Cards.Count)));
                 Hand.PrintColored();
             }
 
-            var swapNthSkatCard = 0;
-            Console.WriteLine("------------------------------------");
-            printStatus();
-            while (true)
+            int? GetInt(string prompt)
             {
-                int? i;
                 while (true)
                 {
-                    Console.WriteLine("Enter an index of number to swap (enter nothing to go to next skat card)");
-                    i = ConsoleLineUtils.GetInt();
+                    Console.WriteLine(prompt);
+                    var i = ConsoleLineUtils.GetInt();
                     if (i == null || i >= 0 && i < Hand.Cards.Count)
-                        break;
+                        return i;
                     Console.WriteLine("Number not in range");
                 }
+            }
 
-                if (i != null)
+            void swapUntilBreak(int n, string comment)
+            {
+                while (true)
                 {
-                    var temp = skat.Cards[swapNthSkatCard];
-                    skat.Cards[swapNthSkatCard] = Hand.Cards[(int) i];
-                    Hand.Cards[(int) i] = temp;
-                    printStatus();
-                }
-                else
-                {
-                    if (++swapNthSkatCard == skat.Cards.Count)
+                    printStatus(n);
+                    var i = GetInt($"Swap nth hand card with Skat card {n} (enter nothing to {comment})");
+
+                    if (i != null)
                     {
-                        Hand.StandardSort();
-                        return true;
+                        var temp = skat.Cards[n];
+                        skat.Cards[n] = Hand.Cards[(int) i];
+                        Hand.Cards[(int) i] = temp;
                     }
+                    else
+                        return;
                 }
             }
+
+            Hand.PrintColored();
+            if (!ConsoleLineUtils.GetBool("Look at Skat?"))
+                return false;
+
+            swapUntilBreak(0, "go to next skat card");
+            swapUntilBreak(1, "finish Skat swapping");
+            return true;
         }
 
         public override Rules SelectRules(bool lookedAtSkat)
@@ -152,6 +169,7 @@ namespace SkatGameLogic
 
         public override Card PlayCard(Game game)
         {
+            // TODO
             Console.WriteLine(Hand);
             Console.Write("Choose a card to play: ");
 

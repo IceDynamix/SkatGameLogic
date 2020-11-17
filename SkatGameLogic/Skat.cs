@@ -52,7 +52,6 @@ namespace SkatGameLogic
                 player.Hand = skatDeck.Take(10);
                 player.Hand.StandardSort();
             }
-
             Skat = skatDeck;
         }
 
@@ -84,6 +83,7 @@ namespace SkatGameLogic
 
         private void PlayRound()
         {
+            // TODO
         }
     }
 

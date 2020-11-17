@@ -65,7 +65,7 @@ namespace SkatGameLogic
 
         public override string ToString() => String.Join('\t', Cards.Select(c => c.ToString()));
 
-        public void PrintColored()
+        public void PrintColored(int spacing = 5)
         {
             foreach (var card in Cards)
             {
@@ -81,43 +81,43 @@ namespace SkatGameLogic
         public CardSuit CardSuit { get; set; }
         public CardNumber CardNumber { get; set; }
 
+        public static readonly Dictionary<CardSuit, ConsoleColor> SuitColors = new Dictionary<CardSuit, ConsoleColor>
+        {
+            {CardSuit.Clubs, ConsoleColor.White},
+            {CardSuit.Spades, ConsoleColor.Green},
+            {CardSuit.Hearts, ConsoleColor.Red},
+            {CardSuit.Diamonds, ConsoleColor.Yellow}
+        };
+
+        public static readonly Dictionary<CardSuit, char> SuitUnicode = new Dictionary<CardSuit, char>
+        {
+            {CardSuit.Clubs, '♣'},
+            {CardSuit.Spades, '♠'},
+            {CardSuit.Hearts, '♥'},
+            {CardSuit.Diamonds, '♦'}
+        };
+
+        public static readonly Dictionary<CardNumber, String> NumberUnicode = new Dictionary<CardNumber, String>
+        {
+            {CardNumber.Jack, "J"},
+            {CardNumber.Ace, "A"},
+            {CardNumber.Ten, "10"},
+            {CardNumber.King, "K"},
+            {CardNumber.Queen, "Q"},
+            {CardNumber.Nine, "9"},
+            {CardNumber.Eight, "8"},
+            {CardNumber.Seven, "7"},
+        };
+
         public void PrintColored()
         {
-            var colors = new Dictionary<CardSuit, ConsoleColor>
-            {
-                {CardSuit.Clubs, ConsoleColor.White},
-                {CardSuit.Spades, ConsoleColor.Green},
-                {CardSuit.Hearts, ConsoleColor.Red},
-                {CardSuit.Diamonds, ConsoleColor.Yellow}
-            };
-
             var previous = Console.ForegroundColor;
-            Console.ForegroundColor = colors[CardSuit];
+            Console.ForegroundColor = SuitColors[CardSuit];
             Console.Write(this);
             Console.ForegroundColor = previous;
         }
-        public override string ToString()
-        {
-            var suitUnicode = new Dictionary<CardSuit, char>
-            {
-                {CardSuit.Clubs, '♣'},
-                {CardSuit.Spades, '♠'},
-                {CardSuit.Hearts, '♥'},
-                {CardSuit.Diamonds, '♦'}
-            };
-            var numberUnicode = new Dictionary<CardNumber, String>
-            {
-                {CardNumber.Jack, "J"},
-                {CardNumber.Ace, "A"},
-                {CardNumber.Ten, "10"},
-                {CardNumber.King, "K"},
-                {CardNumber.Queen, "Q"},
-                {CardNumber.Nine, "9"},
-                {CardNumber.Eight, "8"},
-                {CardNumber.Seven, "7"},
-            };
-            return $"{suitUnicode[CardSuit]}{numberUnicode[CardNumber]}";
-        }
+
+        public override string ToString() => $"{SuitUnicode[CardSuit]}{NumberUnicode[CardNumber]}";
     }
 
     public enum CardSuit
