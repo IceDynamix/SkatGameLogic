@@ -8,15 +8,15 @@ namespace SkatGameLogic
     public abstract class Player
     {
         public string Name;
-        public CardCollection Hand;
-        public CardCollection DiscardPile;
+        public List<Card> Hand;
+        public List<Card> DiscardPile;
         public int GameScore;
 
         public Player(string name) => Name = name;
 
         public abstract int? Bid(int currentBid);
         public abstract bool Listen(int currentBid);
-        public abstract bool SwapWithSkat(CardCollection skat);
+        public abstract bool SwapWithSkat(List<Card> skat);
         public abstract Rules SelectRules(bool lookedAtSkat);
         public abstract Card PlayCard(Game game);
     }
@@ -29,7 +29,7 @@ namespace SkatGameLogic
 
         public override int? Bid(int currentBid)
         {
-            Hand.PrintColored();
+            Cards.PrintColored(Hand);
             Console.WriteLine("Current Bid: " + currentBid);
             Console.WriteLine("Please enter a number that is higher than the current bid (or enter nothing to pass)");
             while (true)
@@ -44,35 +44,35 @@ namespace SkatGameLogic
 
         public override bool Listen(int currentBid)
         {
-            Hand.PrintColored();
+            Cards.PrintColored(Hand);
             Console.WriteLine("Current Bid: " + currentBid);
             return ConsoleLineUtils.GetBool("Go with the current bid?");
         }
 
-        public override bool SwapWithSkat(CardCollection skat)
+        public override bool SwapWithSkat(List<Card> skat)
         {
             void printStatus(int highlightNthSkatCard)
             {
                 Console.Clear();
 
                 Console.Write("Skat:\t");
-                for (int i = 0; i < skat.Cards.Count; i++)
+                for (int i = 0; i < skat.Count; i++)
                 {
                     if (i == highlightNthSkatCard)
                     {
                         var previousFg = Console.ForegroundColor;
                         Console.BackgroundColor = ConsoleColor.Gray;
-                        skat.Cards[i].PrintColored();
+                        skat[i].PrintColored();
                         Console.BackgroundColor = previousFg;
                     }
                     else
-                        skat.Cards[i].PrintColored();
+                        skat[i].PrintColored();
 
                     Console.Write("  ");
                 }
 
                 Console.Write("\n");
-                Hand.PrintColored(true);
+                Cards.PrintColored(Hand, true);
             }
 
             int? GetInt(string prompt)
@@ -81,7 +81,7 @@ namespace SkatGameLogic
                 {
                     Console.WriteLine(prompt);
                     var i = ConsoleLineUtils.GetInt();
-                    if (i == null || i >= 0 && i < Hand.Cards.Count)
+                    if (i == null || i >= 0 && i < Hand.Count)
                         return i;
                     Console.WriteLine("Number not in range");
                 }
@@ -96,16 +96,16 @@ namespace SkatGameLogic
 
                     if (i != null)
                     {
-                        var temp = skat.Cards[n];
-                        skat.Cards[n] = Hand.Cards[(int) i];
-                        Hand.Cards[(int) i] = temp;
+                        var temp = skat[n];
+                        skat[n] = Hand[(int) i];
+                        Hand[(int) i] = temp;
                     }
                     else
                         return;
                 }
             }
 
-            Hand.PrintColored();
+            Cards.PrintColored(Hand);
             if (!ConsoleLineUtils.GetBool("Look at Skat?"))
                 return false;
 
@@ -119,7 +119,7 @@ namespace SkatGameLogic
             int SelectFromList<T>(string prompt, List<T> items)
             {
                 Console.Clear();
-                Hand.PrintColored();
+                Cards.PrintColored(Hand);
                 Console.WriteLine(prompt);
                 for (int i = 0; i < items.Count; i++)
                     Console.WriteLine($"[{i}]: " + items[i]);
@@ -189,8 +189,8 @@ namespace SkatGameLogic
             while (true)
             {
                 var success = int.TryParse(Console.ReadLine(), out int i);
-                if (success && (i >= 0 || i < Hand.Cards.Count))
-                    return Hand.Cards[i];
+                if (success && (i >= 0 || i < Hand.Count))
+                    return Hand[i];
                 Console.WriteLine("Invalid number, please try again");
             }
         }
@@ -208,7 +208,7 @@ namespace SkatGameLogic
 
         public override bool Listen(int currentBid) => false;
 
-        public override bool SwapWithSkat(CardCollection skat) => false;
+        public override bool SwapWithSkat(List<Card> skat) => false;
 
         public override Rules SelectRules(bool b)
         {
@@ -219,6 +219,6 @@ namespace SkatGameLogic
             };
         }
 
-        public override Card PlayCard(Game game) => Hand.Cards[0];
+        public override Card PlayCard(Game game) => Hand[0];
     }
 }

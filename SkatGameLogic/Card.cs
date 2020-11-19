@@ -4,34 +4,30 @@ using System.Linq;
 
 namespace SkatGameLogic
 {
-    public class CardCollection
+    public static class Cards
     {
-        public List<Card> Cards { get; }
-
-        public CardCollection(List<Card> cards) => Cards = cards;
-
-        public static CardCollection GenerateSkatDeck()
+        public static List<Card> GenerateSkatDeck()
         {
             var cards = new List<Card>();
             foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
             foreach (CardNumber number in Enum.GetValues(typeof(CardNumber)))
                 cards.Add(new Card {CardNumber = number, CardSuit = suit});
 
-            return new CardCollection(cards);
+            return cards;
         }
 
-        public void StandardSort(CardSuit trumpSuit = CardSuit.Clubs)
+        public static List<Card> StandardSort(List<Card> originalCards, CardSuit trumpSuit = CardSuit.Clubs)
         {
             var sortedCards = new List<Card>();
 
-            var jacks = Cards.Where(c => c.CardNumber == CardNumber.Jack)
+            var jacks = originalCards.Where(c => c.CardNumber == CardNumber.Jack)
                 .OrderBy(c => c.CardSuit)
                 .ToList();
             sortedCards.AddRange(jacks);
 
             // Everything depends on the List.Distinct at the end so
             // we don't have to worry about adding duplicate cards
-            var trumpSuitCards = Cards.Where(c => c.CardSuit == trumpSuit)
+            var trumpSuitCards = originalCards.Where(c => c.CardSuit == trumpSuit)
                 .OrderBy(c => c.CardNumber)
                 .ToList();
 
@@ -39,37 +35,24 @@ namespace SkatGameLogic
 
             foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
                 sortedCards.AddRange(
-                    Cards.Where(c => c.CardSuit == suit)
+                    originalCards.Where(c => c.CardSuit == suit)
                         .OrderBy(c => c.CardNumber)
                 );
 
-            Cards.Clear();
-            Cards.AddRange(sortedCards.Distinct());
+            return sortedCards.Distinct().ToList();
         }
 
-        public CardCollection Take(int n)
-        {
-            n = Math.Min(n, Cards.Count); // Can't take more than there is
-            var takenCards = new CardCollection(Cards.Take(n).ToList());
-            Cards.RemoveRange(0, n);
-            return takenCards;
-        }
-
-        public void Shuffle()
+        public static List<Card> Shuffle(List<Card> originalCards)
         {
             var rand = new Random();
-            var shuffledCards = Cards.OrderBy(c => rand.Next()).ToList();
-            Cards.Clear();
-            Cards.AddRange(shuffledCards);
+            return originalCards.OrderBy(c => rand.Next()).ToList();
         }
 
-        public override string ToString() => String.Join('\t', Cards.Select(c => c.ToString()));
-
-        public void PrintColored(bool printIndices = false)
+        public static void PrintColored(List<Card> cards, bool printIndices = false)
         {
             if (printIndices)
-                Console.WriteLine(String.Join('\t', Enumerable.Range(0, Cards.Count)));
-            foreach (var card in Cards)
+                Console.WriteLine(String.Join('\t', Enumerable.Range(0, cards.Count)));
+            foreach (var card in cards)
             {
                 card.PrintColored();
                 Console.Write("\t");

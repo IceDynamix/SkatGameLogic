@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SkatGameLogic
 {
@@ -28,7 +29,7 @@ namespace SkatGameLogic
         public List<Round> Rounds;
         public Rules Rules;
         public List<Player> Players;
-        public CardCollection Skat;
+        public List<Card> Skat;
         public int BidValue;
         public Player Declarer;
 
@@ -39,18 +40,17 @@ namespace SkatGameLogic
             Declarer = Bidding();
             var lookedAtSkat = Declarer.SwapWithSkat(Skat);
             Rules = Declarer.SelectRules(lookedAtSkat);
-            Declarer.Hand.StandardSort(Rules.TrumpSuit);
+            Declarer.Hand = Cards.StandardSort(Declarer.Hand, Rules.TrumpSuit);
             Console.WriteLine($"Playing with rules {Rules}");
         }
 
         private void DealCards()
         {
-            var skatDeck = CardCollection.GenerateSkatDeck();
-            skatDeck.Shuffle();
+            var skatDeck = Cards.Shuffle(Cards.GenerateSkatDeck());
             foreach (var player in Players)
             {
-                player.Hand = skatDeck.Take(10);
-                player.Hand.StandardSort();
+                player.Hand = Cards.StandardSort(skatDeck.Take(10).ToList());
+                skatDeck.RemoveRange(0,10);
             }
             Skat = skatDeck;
         }
