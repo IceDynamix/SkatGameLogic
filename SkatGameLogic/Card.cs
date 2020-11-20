@@ -16,30 +16,35 @@ namespace SkatGameLogic
             return cards;
         }
 
-        public static List<Card> StandardSort(List<Card> originalCards, CardSuit trumpSuit = CardSuit.Clubs)
+        public static List<Card> StandardSort(List<Card> originalCards, CardSuit trumpSuit = CardSuit.Clubs,
+            CardSuit secondarySuit = CardSuit.Clubs)
         {
-            var sortedCards = new List<Card>();
+            var baseValue = Enum.GetNames(typeof(CardNumber)).Length;
+            return originalCards.OrderByDescending(c =>
+            {
+                var mainPriority = 0;
+                if (c.CardNumber == CardNumber.Jack)
+                    mainPriority = 3;
+                else if (c.CardSuit == trumpSuit)
+                    mainPriority = 2;
+                else if (c.CardSuit == secondarySuit)
+                    mainPriority = 1;
 
-            var jacks = originalCards.Where(c => c.CardNumber == CardNumber.Jack)
-                .OrderBy(c => c.CardSuit)
-                .ToList();
-            sortedCards.AddRange(jacks);
+                var suitPriority = Enum.GetNames(typeof(CardSuit)).Length - ((int) c.CardSuit);
+                var numberPriority = baseValue - ((int) c.CardNumber);
 
-            // Everything depends on the List.Distinct at the end so
-            // we don't have to worry about adding duplicate cards
-            var trumpSuitCards = originalCards.Where(c => c.CardSuit == trumpSuit)
-                .OrderBy(c => c.CardNumber)
-                .ToList();
+                return mainPriority * baseValue * baseValue + suitPriority * baseValue + numberPriority;
+            }).ToList();
+        }
 
-            sortedCards.AddRange(trumpSuitCards);
-
-            foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
-                sortedCards.AddRange(
-                    originalCards.Where(c => c.CardSuit == suit)
-                        .OrderBy(c => c.CardNumber)
-                );
-
-            return sortedCards.Distinct().ToList();
+        public static List<Card> NullSort(List<Card> originalCards)
+        {
+            var baseValue = Enum.GetNames(typeof(CardNumber)).Length;
+            return originalCards.OrderByDescending(c =>
+                Enum.GetNames(typeof(CardSuit)).Length - ((int) c.CardSuit) * baseValue * baseValue +
+                Card.PointValues[c.CardNumber] * baseValue +
+                baseValue - ((int) c.CardNumber)
+            ).ToList();
         }
 
         public static List<Card> Shuffle(List<Card> originalCards)
@@ -57,6 +62,7 @@ namespace SkatGameLogic
                 card.PrintColored();
                 Console.Write("\t");
             }
+
             Console.Write("\n");
         }
     }
@@ -92,6 +98,30 @@ namespace SkatGameLogic
             {CardNumber.Nine, "9"},
             {CardNumber.Eight, "8"},
             {CardNumber.Seven, "7"},
+        };
+
+        public static readonly Dictionary<CardNumber, int> PointValues = new Dictionary<CardNumber, int>
+        {
+            {CardNumber.Jack, 2},
+            {CardNumber.Ace, 11},
+            {CardNumber.Ten, 10},
+            {CardNumber.King, 4},
+            {CardNumber.Queen, 3},
+            {CardNumber.Nine, 0},
+            {CardNumber.Eight, 0},
+            {CardNumber.Seven, 0},
+        };
+        
+        public static readonly List<CardNumber> NullOrder = new List<CardNumber>()
+        {
+            CardNumber.Ace,
+            CardNumber.King,
+            CardNumber.Queen,
+            CardNumber.Jack,
+            CardNumber.Ten,
+            CardNumber.Nine,
+            CardNumber.Eight,
+            CardNumber.Seven
         };
 
         public void PrintColored()

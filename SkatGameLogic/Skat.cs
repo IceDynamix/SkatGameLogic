@@ -50,7 +50,7 @@ namespace SkatGameLogic
             foreach (var player in Players)
             {
                 player.Hand = Cards.StandardSort(skatDeck.Take(10).ToList());
-                skatDeck.RemoveRange(0,10);
+                skatDeck.RemoveRange(0, 10);
             }
             Skat = skatDeck;
         }
@@ -71,6 +71,7 @@ namespace SkatGameLogic
                     Console.WriteLine(bidder.Name + " passes");
                     return listener;
                 }
+
                 BidValue = (int) bid;
                 var callsBid = listener.Listen(BidValue);
                 if (!callsBid)
@@ -81,9 +82,19 @@ namespace SkatGameLogic
             }
         }
 
-        private void PlayRound()
+        private void PlayRounds()
         {
-            // TODO
+            Rounds = new List<Round>();
+            while (Players[0].Hand.Count > 0)
+            {
+                var playedCards = Players.Select(p => p.PlayCard(this)).ToList();
+                var round = new Round()
+                {
+                    PlayedCards = playedCards,
+                    PlayOrder = Players
+                };
+                Rounds.Add(round);
+            }
         }
     }
 
@@ -100,7 +111,15 @@ namespace SkatGameLogic
 
     public struct Round
     {
-        public Player RoundWinner;
+        public List<Player> PlayOrder;
+        public List<Card> PlayedCards;
+
+        public Player GetPlayerWithHighestCard(CardSuit trumpSuit)
+        {
+            var highestCard = Cards.StandardSort(PlayedCards, trumpSuit).First();
+            var indexOfHighest = PlayedCards.IndexOf(highestCard);
+            return PlayOrder[indexOfHighest];
+        }
     }
 
     public enum GameMode
